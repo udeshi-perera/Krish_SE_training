@@ -9,7 +9,6 @@ public class ReturnBook {
             if (bookName.equals("Famous Five-Five on a treasure island")) ;
             FineCalculator fineCalculator = new FineCalculator();
             fineCalculator.calculateFine(-1);
-            //fineCalculator.getInformation();
         } catch (NullPointerException nullPointerException) {
             System.out.println("The book is referencing to the null value");
         }
