@@ -5,18 +5,18 @@ public class ReverseNumber {
     //to reverse the given number
     public static void reverse(BigInteger number) {
 
-        BigInteger reverseNumber = new BigInteger(String.valueOf(number));
+        //BigInteger reverseNumber= new BigInteger(number);
         BigInteger calculationNumber = new BigInteger("10");
 
 
-        if (reverseNumber.compareTo(calculationNumber) == -1) {
-            System.out.print((reverseNumber));
+        if (number.compareTo(calculationNumber) == -1) {
+            System.out.print((number));
             return;
         } else {
-            System.out.print(reverseNumber.mod(calculationNumber));
-            reverseNumber = reverseNumber.divide(calculationNumber);
+            System.out.print(number.mod(calculationNumber));
+            number = number.divide(calculationNumber);
             //recursively calling the reverse method
-            reverse(reverseNumber);
+            reverse(number);
         }
     }
 
@@ -25,8 +25,9 @@ public class ReverseNumber {
         System.out.println("Enter a number to reverse ");
         Scanner scanner = new Scanner(System.in);
 
-        BigInteger number = scanner.nextBigInteger();
+        String number = scanner.nextLine();
         System.out.println("The reversed number is ");
-        reverse(number);
+        BigInteger userInput = new BigInteger(number);
+        reverse(userInput);
     }
 }
