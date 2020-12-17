@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class ReverseNumber {
+public class ReversedNumber {
 
     //to reverse the given number
     public static void reverse(BigInteger number) {
