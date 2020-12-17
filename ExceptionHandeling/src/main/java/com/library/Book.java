@@ -1,6 +1,6 @@
 package com.library;
 
-import com.librarySystem.Fine;
+import java.io.FileNotFoundException;
 
 public class Book {
 
@@ -16,7 +16,7 @@ public class Book {
         }
     }
 
-    public void getInformation() {
+    public void getInformation() throws FileNotFoundException {
         Fine fine = new Fine();
         fine.getInformation();
     }
