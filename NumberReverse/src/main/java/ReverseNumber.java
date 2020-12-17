@@ -5,7 +5,6 @@ public class ReverseNumber {
     //to reverse the given number
     public static void reverse(BigInteger number) {
 
-        //BigInteger reverseNumber= new BigInteger(number);
         BigInteger calculationNumber = new BigInteger("10");
 
 
