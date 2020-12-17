@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
-public class FineCalculator {
+public class Fine {
 
     public int calculateFine(int numberOfDays) {
 

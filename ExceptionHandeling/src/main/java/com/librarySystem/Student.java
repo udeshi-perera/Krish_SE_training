@@ -4,20 +4,20 @@ public class Student {
 
     void checkLibraryClass() {
 
-        String libraryPackage = "com.librarySystem.BorrowBook";
+        String libraryPackage = "com.librarySystem.Book";
 
         try {
             Class.forName(libraryPackage);
-            BorrowBook borrowBook = new BorrowBook();
-            borrowBook.getNumberOfBorrowId();
+            Book book = new Book();
+            book.enterBookName();
         } catch (ClassNotFoundException classNotFoundException) {
             System.out.println("The class is not found. Please check again.");
         }
     }
 
     void getLibraryInfo() {
-        BorrowBook borrowBook = new BorrowBook();
-        borrowBook.getInfor();
+        Book book = new Book();
+        book.getInformation();
     }
 
 }
