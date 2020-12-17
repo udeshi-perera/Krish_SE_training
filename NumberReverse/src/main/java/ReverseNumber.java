@@ -8,9 +8,9 @@ public class ReverseNumber {
         BigInteger calculationNumber = new BigInteger("10");
 
 
+
         if (number.compareTo(calculationNumber) == -1) {
             System.out.print((number));
-            return;
         } else {
             System.out.print(number.mod(calculationNumber));
             number = number.divide(calculationNumber);
