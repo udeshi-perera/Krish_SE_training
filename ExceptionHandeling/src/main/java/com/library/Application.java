@@ -26,10 +26,12 @@ public class Application {
                 Employee employee = new Employee();
                 employee.getLibraryInfo();
             }
-        } catch (ClassNotFoundException classNotFoundException) {
-            System.out.println("The file you are going to read is not exist. Please check");
         } catch (FileNotFoundException fileNotFoundException) {
-            System.out.println("The file does not exist");
+            System.out.println("The file you are going to read is not exist. Please check");
+        } catch (ClassNotFoundException classNotFoundException) {
+            System.out.println("The class does not exist");
+        } catch (ArithmeticException arithmeticException) {
+            System.out.println("Arithmetic Exception");
         }
     }
 

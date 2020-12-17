@@ -20,4 +20,11 @@ public class Book {
         Fine fine = new Fine();
         fine.getInformation();
     }
+
+    public void getNumberOfBooks() throws ArithmeticException {
+        int noOfBooks = 10;
+        int numberOfMembers = 0;
+        int bookPerMember = noOfBooks / numberOfMembers;
+
+    }
 }
