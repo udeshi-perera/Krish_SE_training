@@ -7,23 +7,23 @@ import java.io.FileNotFoundException;
 public class Fine {
 
     public int calculateFine(int numberOfDays) {
-
-        if (numberOfDays < 0) {
+        try{
+            if (numberOfDays < 0);
+        }
+        catch (ArithmeticException arithmeticException){
             throw new ArithmeticException("Enter a valid number of days.");
         }
         return 50 * numberOfDays;
     }
 
-    public void getInformation() {
+    public void getInformation() throws FileNotFoundException {
 
-
-        File libraryFileInfo = new File("C:\\libarary.txt");
+        File libraryFileInfo = new File("C:\\library.txt");
 
         try {
             FileInputStream fileInputStream = new FileInputStream(libraryFileInfo);
+        } catch (FileNotFoundException fileNotFoundException) {
             throw new FileNotFoundException("Enter path correctly");
-        } catch (FileNotFoundException e) {
-            System.out.println("Eneter path correctly");
         }
 
     }

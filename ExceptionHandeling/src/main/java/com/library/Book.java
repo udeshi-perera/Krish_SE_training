@@ -16,7 +16,7 @@ public class Book {
         }
     }
 
-    void getInformation() {
+    public void getInformation() {
         Fine fine = new Fine();
         fine.getInformation();
     }
