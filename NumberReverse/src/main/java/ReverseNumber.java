@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class ReversedNumber {
 
     //to reverse the given number
-    public static void reverse(BigInteger number) {
+    public static void reverseNumber(BigInteger number) {
 
         BigInteger calculationNumber = new BigInteger("10");
 
@@ -15,7 +15,7 @@ public class ReversedNumber {
             System.out.print(number.mod(calculationNumber));
             number = number.divide(calculationNumber);
             //recursively calling the reverse method
-            reverse(number);
+            reverseNumber(number);
         }
     }
 
@@ -27,6 +27,6 @@ public class ReversedNumber {
         String number = scanner.nextLine();
         System.out.println("The reversed number is ");
         BigInteger userInput = new BigInteger(number);
-        reverse(userInput);
+        reverseNumber(userInput);
     }
 }
