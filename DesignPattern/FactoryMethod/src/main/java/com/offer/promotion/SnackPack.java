@@ -1,4 +1,7 @@
-package com.offer;
+package com.offer.promotion;
+
+import com.offer.pizza.ChickenPizza;
+import com.offer.pizza.SausagePizza;
 
 public class SnackPack extends Offer {
 

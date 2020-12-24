@@ -1,4 +1,4 @@
-package com.offer;
+package com.offer.pizza;
 
 public class ChickenBaconPizza extends Pizza {
     @Override

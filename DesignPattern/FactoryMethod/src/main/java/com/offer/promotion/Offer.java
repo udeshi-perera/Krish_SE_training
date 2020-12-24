@@ -1,4 +1,6 @@
-package com.offer;
+package com.offer.promotion;
+
+import com.offer.pizza.Pizza;
 
 import java.util.ArrayList;
 import java.util.List;

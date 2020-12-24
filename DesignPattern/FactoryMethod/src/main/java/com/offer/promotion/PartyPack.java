@@ -1,4 +1,8 @@
-package com.offer;
+package com.offer.promotion;
+
+import com.offer.pizza.CheesePizza;
+import com.offer.pizza.ChickenBaconPizza;
+import com.offer.pizza.ChickenPizza;
 
 public class PartyPack extends Offer {
 
