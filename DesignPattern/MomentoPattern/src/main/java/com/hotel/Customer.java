@@ -10,11 +10,6 @@ public class Customer {
         hotelRoom.add(room);
     }
 
-//    public void setHotelRoom(ArrayList<HotelRoom> hotelRoom) {
-//        this.hotelRoom = (ArrayList<HotelRoom>) hotelRoom.clone();
-//    }
-
-    //get current status and clone
     public ArrayList<HotelRoom> getHotelRoom() {
         return (ArrayList<HotelRoom>) hotelRoom.clone();
     }
@@ -41,7 +36,6 @@ public class Customer {
             this.hotelRoom = hotelRoom;
         }
 
-        //to give access only to customer
         private ArrayList<HotelRoom> getHotelRoom() {
             return hotelRoom;
         }
