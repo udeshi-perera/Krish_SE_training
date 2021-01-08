@@ -1,4 +1,4 @@
-package com.commons.model;
+package com.commons.model.task;
 
 import lombok.Data;
 
@@ -11,11 +11,11 @@ public class Task {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private int id;
 
     private String taskName;
 
-    private Integer projectId;
+    private int projectId;
 
     private String assignedPersonId;
 

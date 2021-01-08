@@ -1,8 +1,9 @@
-package com.commons.model;
+package com.commons.model.project;
 
 import lombok.Data;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 
 @Entity
 @Data
@@ -10,11 +11,14 @@ import javax.persistence.*;
 public class Project {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(unique = true)
-    private Integer id;
+    @GeneratedValue
+    private int id;
 
     private String projectName;
 
     private String status;
+
+    private LocalDate startDate;
+
+    private LocalDate endDate;
 }
