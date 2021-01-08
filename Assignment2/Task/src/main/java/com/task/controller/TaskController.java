@@ -26,6 +26,12 @@ public class TaskController {
         return restTemplateBuilder.build();
     }
 
+    /**
+     * this method used to save tasks
+     *
+     * @param task task information
+     * @return {@ResponseEntity}
+     */
     @RequestMapping(value = "/task", method = RequestMethod.POST)
     public ResponseEntity save(@RequestBody Task task) {
         Task newTask = taskService.save(task);
@@ -40,6 +46,12 @@ public class TaskController {
         }
     }
 
+    /**
+     * this method used to update task
+     *
+     * @param task start date of the project
+     * @return {@ResponseEntity}
+     */
     @RequestMapping(value = "/task", method = RequestMethod.PUT)
     public ResponseEntity update(@RequestBody Task task) {
         Task updatedTask = taskService.update(task);
@@ -55,10 +67,10 @@ public class TaskController {
     }
 
     /**
-     * this method used to delete tasks
+     * this method used to delete task
      *
      * @param id task id
-     * @return {@Entity Task}
+     * @return {@ResponseEntity}
      */
     @RequestMapping(value = "/task", method = RequestMethod.DELETE)
     public ResponseEntity delete(@RequestParam(value = "id") int id) {
@@ -70,11 +82,22 @@ public class TaskController {
         }
     }
 
+    /**
+     * this method used to view all tasks
+     *
+     * @return {@List Tasks}
+     */
     @RequestMapping(value = "/task", method = RequestMethod.GET)
     public List<Task> fetch() {
         return taskService.fetch();
     }
 
+    /**
+     * this method used to view task for a given id
+     *
+     * @param id task id
+     * @return {@ResponseEntity}
+     */
     @RequestMapping(value = "/task/{task-id}", method = RequestMethod.GET)
     public ResponseEntity fetch(@PathVariable(value = "task-id") int id) {
         try {
@@ -85,11 +108,24 @@ public class TaskController {
         }
     }
 
+    /**
+     * this method used to view all active tasks
+     *
+     * @param status status of the task
+     * @return {@List Task}
+     */
     @RequestMapping(value = "/active-task", method = RequestMethod.GET)
     public List<Task> fetchActiveTask(String status) {
         return taskService.getActiveTask(status);
     }
 
+    /**
+     * this method used to view all active tasks for a given id
+     *
+     * @param id     project id
+     * @param status status of task
+     * @return {@ResponseEntity}
+     */
     @RequestMapping(value = "/project-task", method = RequestMethod.GET)
     public ResponseEntity fetchProjectTask(@RequestParam(value = "id") int id, String status) {
         try {
@@ -100,6 +136,12 @@ public class TaskController {
         }
     }
 
+    /**
+     * this method used to view all tasks for a empId
+     *
+     * @param empId employee id
+     * @return {@ResponseEntity}
+     */
     @RequestMapping(value = "/task-by-id", method = RequestMethod.GET)
     public ResponseEntity fetchTasksByEmpId(@RequestParam(value = "empId") String empId) {
         try {
