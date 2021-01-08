@@ -1,25 +1,24 @@
 package com.task.service;
 
-import com.commons.model.Task;
-import org.springframework.stereotype.Service;
+import com.commons.model.task.Task;
 
 import java.util.List;
-import java.util.Optional;
 
-@Service
 public interface TaskService {
 
     Task save(Task task);
 
     Task update(Task task);
 
-    Task delete(Integer id);
+    Task delete(int id);
 
     List<Task> fetch();
 
-    Optional<Task> fetch(Integer id);
+    Task fetch(int id);
 
     List<Task> getActiveTask(String status);
 
-    List<Task> getProjectTask(Integer projectId);
+    List<Task> getProjectTask(int projectId, String status);
+
+    List<Task> getProjectByEmpId(String empId);
 }

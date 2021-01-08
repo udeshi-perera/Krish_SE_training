@@ -1,49 +1,56 @@
 package com.task.controller;
 
-import com.commons.model.Project;
-import com.commons.model.Task;
+import com.commons.model.task.Task;
 import com.task.service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.Optional;
 
 @RestController
 public class TaskController {
 
     @Autowired
     TaskService taskService;
+    @Autowired
     RestTemplate restTemplate = new RestTemplate();
 
+    @Bean
+    RestTemplate getRestTemplate(RestTemplateBuilder restTemplateBuilder) {
+        return restTemplateBuilder.build();
+    }
+
     @RequestMapping(value = "/task", method = RequestMethod.POST)
-    public Task save(@RequestBody Task task) {
-        Project project = restTemplate.getForObject("http://localhost:8080/project/" + task.getProjectId(), Project.class);
-        String projectStatus = project.getStatus();
-        task.setProjectName(project.getProjectName());
+    public ResponseEntity save(@RequestBody Task task) {
+        Task newTask = taskService.save(task);
         try {
-            if (projectStatus.equals("ACTIVE")) {
-                return taskService.save(task);
+            if (task.getStatus().equals("ACTIVE")) {
+                return ResponseEntity.ok().body(newTask);
+            } else {
+                return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body("Project Status is deactive.");
             }
-            return task;
         } catch (NullPointerException nullPointerException) {
-            throw new NullPointerException("Project is not active");
+            return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body("Project id is not exists");
         }
     }
 
     @RequestMapping(value = "/task", method = RequestMethod.PUT)
-    public Task update(@RequestBody Task task) {
-        Project project = restTemplate.getForObject("http://localhost:8080/project/" + task.getProjectId(), Project.class);
-        String projectStatus = project.getStatus();
+    public ResponseEntity update(@RequestBody Task task) {
+        Task updatedTask = taskService.update(task);
         try {
-            if (projectStatus.equals("ACTIVE")) {
-                return taskService.update(task);
+            if (task.getStatus().equals("ACTIVE")) {
+                return ResponseEntity.ok().body(updatedTask);
+            } else {
+                return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body("Project Status is deactive.");
             }
-            return task;
         } catch (NullPointerException nullPointerException) {
-            throw new NullPointerException("Project id is not active");
+            throw new NullPointerException("Project id is not exists");
         }
     }
 
@@ -54,11 +61,13 @@ public class TaskController {
      * @return {@Entity Task}
      */
     @RequestMapping(value = "/task", method = RequestMethod.DELETE)
-    public Task delete(@RequestParam(value = "id") Integer id) {
-        if (id != null) {
-            return taskService.delete(id);
+    public ResponseEntity delete(@RequestParam(value = "id") int id) {
+        try {
+            taskService.delete(id);
+            return ResponseEntity.status(HttpStatus.OK).body("Task deleted successfully");
+        } catch (NoSuchElementException noSuchElementException) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Project Id is not existing");
         }
-        throw new NoSuchElementException("Id doesnt exists");
     }
 
     @RequestMapping(value = "/task", method = RequestMethod.GET)
@@ -67,8 +76,13 @@ public class TaskController {
     }
 
     @RequestMapping(value = "/task/{task-id}", method = RequestMethod.GET)
-    public Optional<Task> fetch(@PathVariable(value = "task-id") Integer id) {
-        return taskService.fetch(id);
+    public ResponseEntity fetch(@PathVariable(value = "task-id") int id) {
+        try {
+            Task task = taskService.fetch(id);
+            return ResponseEntity.status(HttpStatus.OK).body(task);
+        } catch (NoSuchElementException noSuchElementException) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Task Id is not existing");
+        }
     }
 
     @RequestMapping(value = "/active-task", method = RequestMethod.GET)
@@ -77,7 +91,22 @@ public class TaskController {
     }
 
     @RequestMapping(value = "/project-task", method = RequestMethod.GET)
-    public List<Task> fetchProjectTask(@RequestParam(value = "id") Integer id) {
-        return taskService.getProjectTask(id);
+    public ResponseEntity fetchProjectTask(@RequestParam(value = "id") int id, String status) {
+        try {
+            List<Task> tasks = taskService.getProjectTask(id, status);
+            return ResponseEntity.status(HttpStatus.OK).body(tasks);
+        } catch (NoSuchElementException noSuchElementException) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Task Id is not existing");
+        }
+    }
+
+    @RequestMapping(value = "/task-by-id", method = RequestMethod.GET)
+    public ResponseEntity fetchTasksByEmpId(@RequestParam(value = "empId") String empId) {
+        try {
+            List<Task> tasks = taskService.getProjectByEmpId(empId);
+            return ResponseEntity.status(HttpStatus.OK).body(tasks);
+        } catch (NoSuchElementException noSuchElementException) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Employee Id is not existing");
+        }
     }
 }
