@@ -1,0 +1,356 @@
+{
+	"info": {
+		"_postman_id": "fb160fd9-fcfe-4020-8744-a85b2a8dfa05",
+		"name": "Postman-Assignment2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "save project",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"projectName\":\"MSS\",\r\n    \"startDate\":\"2021-10-30\",\r\n    \"endDate\":\"2022-12-31\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/project",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"project"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update project",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 7,\r\n    \"projectName\": \"ABC\",\r\n    \"status\": \"ACTIVE\",\r\n    \"startDate\": \"2021-10-14\",\r\n    \"endDate\": \"2022-01-31\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/project",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"project"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete project",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\":5,\r\n    \"projectName\":\"third project\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/project?id=6",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"project"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "6"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "fetch all projects",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/project",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"project"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "view by project id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/project/5",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"project",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "view active projects",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/project-status",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"project-status"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "view project by startdate",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/projects?startDate=2021-08-30",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"projects"
+					],
+					"query": [
+						{
+							"key": "startDate",
+							"value": "2021-08-30"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "save task",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"taskName\":\"first Task\",\r\n    \"projectId\":2,\r\n    \"assignedPersonId\":\"ts101\",\r\n    \"assignedPersonName\":\"udeshi\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8081/task",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"task"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update task",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 11,\r\n    \"taskName\": \"manage employees\",\r\n    \"projectId\": 2,\r\n    \"assignedPersonId\": \"ts101\",\r\n    \"assignedPersonName\": \"udeshi\",\r\n    \"status\": \"ACTIVE\",\r\n    \"projectName\": \"MSS\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8081/task",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"task"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete task",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8081/task?id=2",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"task"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "view all tasks",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8081/task",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"task"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "view task by id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8081/task/3",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"task",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "all active tasks",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8081/active-task",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"active-task"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get all active task for a given project",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8081/project-task?id=2",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"project-task"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get all tasks for a given emp id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8081/task-by-id?empId=8",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"task-by-id"
+					],
+					"query": [
+						{
+							"key": "empId",
+							"value": "8"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
