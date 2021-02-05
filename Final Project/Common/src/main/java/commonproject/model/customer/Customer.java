@@ -2,10 +2,7 @@ package commonproject.model.customer;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -19,6 +16,7 @@ public class Customer {
     @NotNull
     private String customerName;
 
+@Column(unique = true)
     private String mobileNumber;
 
     private String email;
