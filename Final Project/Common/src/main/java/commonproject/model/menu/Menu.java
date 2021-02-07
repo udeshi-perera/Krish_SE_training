@@ -1,6 +1,7 @@
 package commonproject.model.menu;
 
 import commonproject.enumorator.FoodCategory;
+import commonproject.enumorator.Status;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -25,7 +26,5 @@ public class Menu {
     private FoodCategory foodCategory;
 
     @NotNull
-    private BigDecimal pricePerItem;
-
-
+    private float pricePerItem;
 }

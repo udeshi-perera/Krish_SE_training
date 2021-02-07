@@ -5,6 +5,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.math.BigDecimal;
 
 @Entity
 @Data
@@ -15,8 +16,8 @@ public class Payment {
     @GeneratedValue
     private int id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "orderDetailId")
     @NotNull
-    private OrderDetail orderDetailId;
+    private int orderId;
+
+    private float fullPayment;
 }

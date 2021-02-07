@@ -14,24 +14,25 @@ import java.math.BigDecimal;
 @Table(name = "orderDetail")
 public class OrderDetail {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
     @Enumerated(EnumType.STRING)
     private Status status;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "menuId")
-    private Menu menuId;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "orderId")
     @NotNull
-    private Order orderId;
+    private int menu;
+
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "orderId")
+    @NotNull
+    private int orderId;
 
     @NotNull
     private int quantity;
 
     @NotNull
-    private BigDecimal price;
+    private float price;
+
+    //private int menuId;
 }

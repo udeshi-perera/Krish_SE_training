@@ -6,16 +6,17 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
 @Data
-@Table(name = "order")
+@Table(name = "newOrder")
 public class Order {
 
     @Id
     @GeneratedValue
     private int id;
 
-    private LocalDateTime orderDateTime;
+    private String orderDateTime;
 }
