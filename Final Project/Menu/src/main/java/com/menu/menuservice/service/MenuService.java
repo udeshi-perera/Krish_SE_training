@@ -10,5 +10,7 @@ public interface MenuService {
 
     Menu findMenuByFoodCode(String code);
 
-    Menu delete(Integer id);
+    void delete(Integer id);
+
+    Menu fetch(int id);
 }

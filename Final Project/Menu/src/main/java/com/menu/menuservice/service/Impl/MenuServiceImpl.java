@@ -7,6 +7,8 @@ import commonproject.model.menu.Menu;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class MenuServiceImpl implements MenuService {
 
@@ -31,7 +33,13 @@ public class MenuServiceImpl implements MenuService {
     }
 
     @Override
-    public Menu delete(Integer id) {
-        return null;
+    public void delete(Integer id) {
+        menuRepository.deleteById(id);
+    }
+
+    @Override
+    public Menu fetch(int id) {
+        Optional<Menu> optionalMenu = menuRepository.findById(id);
+        return optionalMenu.get();
     }
 }
