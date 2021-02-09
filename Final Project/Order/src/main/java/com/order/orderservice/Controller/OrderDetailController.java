@@ -1,15 +1,13 @@
 package com.order.orderservice.Controller;
 
+import com.order.orderservice.dto.OrderDetailDto;
 import com.order.orderservice.service.OrderDetailService;
-import com.order.orderservice.service.OrderService;
-import commonproject.model.menu.Menu;
 import commonproject.model.order.OrderDetail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.NoSuchElementException;
 
 @RestController
@@ -33,16 +31,18 @@ public class OrderDetailController {
         }
     }
 
-    @RequestMapping(value = "/orderDetail/{id}",method = RequestMethod.GET)
-    public List<OrderDetail> fetch(@PathVariable(value = "id") int id) {
+    @RequestMapping(value = "/orderDetail/{id}", method = RequestMethod.GET)
+    public OrderDetailDto fetch(@PathVariable(value = "id") int id) {
 //        try {
 //            OrderDetail orderDetail = (OrderDetail) orderDetailService.findByOrderId(id);
 //            return ResponseEntity.status(HttpStatus.OK).body(orderDetail);
 //        } catch (NoSuchElementException noSuchElementException) {
 //            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Order Id is not existing");
 //        }
-
-        return orderDetailService.findByOrderId(id);
+        OrderDetailDto orderList = new OrderDetailDto();
+        orderList.setOrderDetailList(orderDetailService.findByOrderId(id));
+        return orderList;
+        // return orderDetailService.findByOrderId(id);
     }
 
 }

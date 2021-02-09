@@ -11,7 +11,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -31,11 +30,12 @@ public class OrderDetailImpl implements OrderDetailService {
 
     @Override
     public OrderDetail save(OrderDetail orderDetail) {
-        Menu menu= restTemplate.getForObject("http://localhost:8080/menu/"+orderDetail.getMenu(), Menu.class);
+        Menu menu = restTemplate.getForObject("http://localhost:8080/menu/" + orderDetail.getMenu(), Menu.class);
         orderDetail.setStatus(Status.ACTIVE);
-        float unitPrice=menu.getPricePerItem();
-        orderDetail.setPrice(unitPrice*orderDetail.getQuantity());
+        float unitPrice = menu.getPricePerItem();
+        orderDetail.setPrice(unitPrice * orderDetail.getQuantity());
         orderDetail.setStatus(Status.ACTIVE);
+//        orderDetail.setOrderId(orderDetailRepository.findLatestOrderId());
         System.out.println(orderDetail);
         return orderDetailRepository.save(orderDetail);
     }
@@ -49,7 +49,7 @@ public class OrderDetailImpl implements OrderDetailService {
     }
 
     @Override
-    public List<OrderDetail> findByOrderId(int id){
+    public List<OrderDetail> findByOrderId(int id) {
         return orderDetailRepository.findByOrderId(id);
     }
 }
