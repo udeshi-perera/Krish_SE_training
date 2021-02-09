@@ -1,11 +1,11 @@
 package com.menu.menuservice.repository;
 
 import commonproject.model.menu.Menu;
-import org.springframework.stereotype.Repository;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 @Repository
-public interface MenuRepository extends JpaRepository<Menu,Integer>  {
+public interface MenuRepository extends JpaRepository<Menu, Integer> {
 
     Menu findByCode(String code);
 }
