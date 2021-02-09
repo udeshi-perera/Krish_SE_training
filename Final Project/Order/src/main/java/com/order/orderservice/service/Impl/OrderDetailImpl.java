@@ -7,6 +7,7 @@ import commonproject.model.menu.Menu;
 import commonproject.model.order.OrderDetail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -20,6 +21,7 @@ public class OrderDetailImpl implements OrderDetailService {
     @Autowired
     OrderDetailRepository orderDetailRepository;
 
+    @LoadBalanced
     @Bean
     RestTemplate getRestTemplate(RestTemplateBuilder restTemplateBuilder) {
         return restTemplateBuilder.build();
@@ -30,12 +32,11 @@ public class OrderDetailImpl implements OrderDetailService {
 
     @Override
     public OrderDetail save(OrderDetail orderDetail) {
-        Menu menu = restTemplate.getForObject("http://localhost:8080/menu/" + orderDetail.getMenu(), Menu.class);
+        Menu menu = restTemplate.getForObject("http://menu/menu/" + orderDetail.getMenu(), Menu.class);
         orderDetail.setStatus(Status.ACTIVE);
         float unitPrice = menu.getPricePerItem();
         orderDetail.setPrice(unitPrice * orderDetail.getQuantity());
         orderDetail.setStatus(Status.ACTIVE);
-//        orderDetail.setOrderId(orderDetailRepository.findLatestOrderId());
         System.out.println(orderDetail);
         return orderDetailRepository.save(orderDetail);
     }

@@ -16,6 +16,7 @@ public class OrderDetailController {
     @Autowired
     OrderDetailService orderDetailService;
 
+
     @RequestMapping(value = "/orderDetail", method = RequestMethod.POST)
     public OrderDetail save(@RequestBody OrderDetail orderDetail) {
         return orderDetailService.save(orderDetail);
@@ -33,16 +34,9 @@ public class OrderDetailController {
 
     @RequestMapping(value = "/orderDetail/{id}", method = RequestMethod.GET)
     public OrderDetailDto fetch(@PathVariable(value = "id") int id) {
-//        try {
-//            OrderDetail orderDetail = (OrderDetail) orderDetailService.findByOrderId(id);
-//            return ResponseEntity.status(HttpStatus.OK).body(orderDetail);
-//        } catch (NoSuchElementException noSuchElementException) {
-//            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Order Id is not existing");
-//        }
         OrderDetailDto orderList = new OrderDetailDto();
         orderList.setOrderDetailList(orderDetailService.findByOrderId(id));
         return orderList;
-        // return orderDetailService.findByOrderId(id);
     }
 
 }
